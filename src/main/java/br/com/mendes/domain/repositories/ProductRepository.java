@@ -3,9 +3,11 @@ package br.com.mendes.domain.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.mendes.domain.models.Address;
+import br.com.mendes.domain.models.Product;
 
 @Repository
-public interface AddressRepository extends JpaRepository<Address, Long>{
+public interface ProductRepository extends JpaRepository<Product, Long> {
+	
+	
 
 }
