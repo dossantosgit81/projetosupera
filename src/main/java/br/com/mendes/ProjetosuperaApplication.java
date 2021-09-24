@@ -1,7 +1,6 @@
 package br.com.mendes;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -12,10 +11,12 @@ import br.com.mendes.domain.models.Address;
 import br.com.mendes.domain.models.Category;
 import br.com.mendes.domain.models.Customer;
 import br.com.mendes.domain.models.Product;
+import br.com.mendes.domain.models.Score;
 import br.com.mendes.services.AddressService;
 import br.com.mendes.services.CategoryService;
 import br.com.mendes.services.CustomerService;
 import br.com.mendes.services.ProductService;
+import br.com.mendes.services.ScoreService;
 
 @SpringBootApplication
 public class ProjetosuperaApplication implements CommandLineRunner{
@@ -31,6 +32,9 @@ public class ProjetosuperaApplication implements CommandLineRunner{
 	
 	@Autowired
 	private CategoryService categoryService;
+	
+	@Autowired
+	private ScoreService scocreService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetosuperaApplication.class, args);
@@ -52,27 +56,28 @@ public class ProjetosuperaApplication implements CommandLineRunner{
 		
 		System.out.println("Endereços e e cliente cadastrado");
 		
-		//Long id, String description, BigDecimal price, Integer qtdStock
-		//Long id, String name
-		
 		Category category1 = categoryService.save(new Category(null, "Esporte"));
 		Category category2 = categoryService.save(new Category(null, "Final fantasy"));
 		
-		Product prod1 = productService.save(new Product(null, "Fifa Mobile", new BigDecimal("26.80"), 3, category1));
-		Product prod2 = productService.save(new Product(null, "Clash Royale", new BigDecimal("20.91"), 3, category2));
-		Product prod3 = productService.save(new Product(null, "Pes Mobile", new BigDecimal("11.76"), 3, category1));
+		Product prod1 = productService.save(new Product(null, "Fifa Mobile", new BigDecimal("26.80"), category1));
+		Product prod2 = productService.save(new Product(null, "Clash Royale", new BigDecimal("20.91"), category2));
+		
+		Score score1 = new Score(prod1, customer1, new BigDecimal("3"));
+		Score score2 = new Score(prod1, customer2, new BigDecimal("2"));
+		Score score3 = new Score(prod2, customer1, new BigDecimal("5"));
+		Score score4 = new Score(prod2, customer1, new BigDecimal("5"));
+
+		scocreService.save(score1);
+		scocreService.save(score2);
+		scocreService.save(score3);
+		scocreService.save(score4);
 		
 		
-		category1.getProducts().addAll(Arrays.asList(prod1, prod2));
-		category2.getProducts().add(prod3);
 		
-		for(Product product : category1.getProducts()) {
-			System.out.println(product);
-		}
+//		category1.getProducts().addAll(Arrays.asList(prod1, prod2));
+//		category2.getProducts().add(prod3);
 		
-		for(Product product : category2.getProducts()) {
-			System.out.println(product);
-		}
+		System.out.println("Fim!!!!!");
 		
 		
 		//relação entre Prod1 e Customer

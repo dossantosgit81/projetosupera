@@ -1,6 +1,8 @@
 package br.com.mendes.domain.models;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Product {
@@ -24,17 +27,17 @@ public class Product {
 	@JoinColumn(name="category_id")
 	private Category category;
 	
-	private int score;
+	@OneToMany(mappedBy="id.product")
+	private List<Score> score = new ArrayList<>();
 	
 	public Product() {
 		
 	}
 
-	public Product(Long id, String description, BigDecimal price, int score, Category category) {
+	public Product(Long id, String description, BigDecimal price,Category category) {
 		this.id = id;
 		this.description = description;
 		this.price = price;
-		this.score = score;
 		this.category = category;
 	}
 
@@ -62,11 +65,19 @@ public class Product {
 		this.price = price;
 	}
 
-	public int getScore() {
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	public List<Score> getScore() {
 		return score;
 	}
 
-	public void setScore(int score) {
+	public void setScore(List<Score> score) {
 		this.score = score;
 	}
 

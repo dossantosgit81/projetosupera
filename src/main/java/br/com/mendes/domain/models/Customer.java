@@ -11,8 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-
-
 @Entity
 public class Customer implements Serializable{
 	
@@ -28,6 +26,9 @@ public class Customer implements Serializable{
 	
 	@OneToMany(mappedBy="customer")
 	private List<Address> address = new ArrayList<>();
+	
+	@OneToMany(mappedBy="id.customer")
+	private List<Score> scores = new ArrayList<>();
 	
 	public Customer() {
 		
