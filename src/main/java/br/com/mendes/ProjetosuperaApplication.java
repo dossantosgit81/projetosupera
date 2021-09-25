@@ -1,7 +1,9 @@
 package br.com.mendes;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 
+import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -12,11 +14,13 @@ import br.com.mendes.domain.models.Category;
 import br.com.mendes.domain.models.Customer;
 import br.com.mendes.domain.models.Product;
 import br.com.mendes.domain.models.Score;
+import br.com.mendes.domain.models.ShoppingCart;
 import br.com.mendes.services.AddressService;
 import br.com.mendes.services.CategoryService;
 import br.com.mendes.services.CustomerService;
 import br.com.mendes.services.ProductService;
 import br.com.mendes.services.ScoreService;
+import br.com.mendes.services.ShoppingCartService;
 
 @SpringBootApplication
 public class ProjetosuperaApplication implements CommandLineRunner{
@@ -35,6 +39,9 @@ public class ProjetosuperaApplication implements CommandLineRunner{
 	
 	@Autowired
 	private ScoreService scocreService;
+	
+	@Autowired
+	private ShoppingCartService spService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetosuperaApplication.class, args);
@@ -59,8 +66,8 @@ public class ProjetosuperaApplication implements CommandLineRunner{
 		Category category1 = categoryService.save(new Category(null, "Esporte"));
 		Category category2 = categoryService.save(new Category(null, "Final fantasy"));
 		
-		Product prod1 = productService.save(new Product(null, "Fifa Mobile", new BigDecimal("26.80"), category1));
-		Product prod2 = productService.save(new Product(null, "Clash Royale", new BigDecimal("20.91"), category2));
+		Product prod1 = productService.save(new Product(null, "Fifa Mobile", new BigDecimal("20"), category1));
+		Product prod2 = productService.save(new Product(null, "Clash Royale", new BigDecimal("10"), category2));
 		
 		Score score1 = new Score(prod1, customer1, new BigDecimal("3"));
 		Score score2 = new Score(prod1, customer2, new BigDecimal("2"));
@@ -72,10 +79,18 @@ public class ProjetosuperaApplication implements CommandLineRunner{
 		scocreService.save(score3);
 		scocreService.save(score4);
 		
+		//Customer id, Customer customer
+		ShoppingCart sp = new ShoppingCart(customer1, customer1);
+		sp.getItens().addAll(Arrays.asList(prod1, prod2));
 		
+		//System.out.println(sp.getItens().size());
+		System.out.println(sp.getSubtotal().toString());
+		System.out.println(sp.getFreight().toString());
+		System.out.println();
 		
-//		category1.getProducts().addAll(Arrays.asList(prod1, prod2));
-//		category2.getProducts().add(prod3);
+		ShoppingCart spCartSaved = spService.save(sp);
+		ShoppingCart spCartSaved1 = spService.save(sp);
+		
 		
 		System.out.println("Fim!!!!!");
 		

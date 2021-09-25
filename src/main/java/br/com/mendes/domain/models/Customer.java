@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Customer implements Serializable{
@@ -29,6 +30,12 @@ public class Customer implements Serializable{
 	
 	@OneToMany(mappedBy="id.customer")
 	private List<Score> scores = new ArrayList<>();
+	
+	@OneToMany(mappedBy="customer")
+	private List<Checkout> checkouts = new ArrayList<>();
+	
+	@OneToOne(mappedBy="customer")
+	private ShoppingCart shopingCart;
 	
 	public Customer() {
 		
@@ -71,6 +78,19 @@ public class Customer implements Serializable{
 	public void setAddress(List<Address> address) {
 		this.address = address;
 	}
+
+	public List<Score> getScores() {
+		return scores;
+	}
+
+	public void setScores(List<Score> scores) {
+		this.scores = scores;
+	}
+
+	public List<Checkout> getCheckouts() {
+		return checkouts;
+	}
+
 
 	@Override
 	public int hashCode() {

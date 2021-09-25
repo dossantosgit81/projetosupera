@@ -7,7 +7,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Embeddable
-public class ScoreFk implements Serializable{
+public class ScorePk implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
@@ -19,11 +19,11 @@ public class ScoreFk implements Serializable{
 	@JoinColumn(name="product_id")
 	private Product product;
 	
-	public ScoreFk() {
+	public ScorePk() {
 		
 	}
 
-	public ScoreFk(Customer customer, Product product) {
+	public ScorePk(Customer customer, Product product) {
 		this.customer = customer;
 		this.product = product;
 	}

@@ -12,7 +12,7 @@ public class Score implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
-	ScoreFk id = new ScoreFk();
+	ScorePk id = new ScorePk();
 	
 	private BigDecimal score;
 	
@@ -34,11 +34,11 @@ public class Score implements Serializable{
 		this.score = score;
 	}
 
-	public ScoreFk getId() {
+	public ScorePk getId() {
 		return id;
 	}
 
-	public void setSocreFk(ScoreFk id) {
+	public void setSocreFk(ScorePk id) {
 		this.id = id;
 	}
 	
