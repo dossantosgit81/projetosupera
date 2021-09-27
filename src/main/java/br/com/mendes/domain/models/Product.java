@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -25,7 +24,6 @@ public class Product {
 	private BigDecimal price;
 	
 	@ManyToOne
-	@JoinColumn(name="category_id")
 	private Category category;
 	
 	@OneToMany(mappedBy="id.product")
@@ -83,7 +81,14 @@ public class Product {
 
 	public void setScore(List<Score> score) {
 		this.score = score;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", description=" + description + ", price=" + price + ", category=" + category
+				+ ", score=" + score + ", cart=" + cart + "]";
 	}	
+	
 	
 
 }

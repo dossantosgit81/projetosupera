@@ -25,9 +25,6 @@ public class Customer implements Serializable{
 	
 	private String email;
 	
-	@OneToMany(mappedBy="customer")
-	private List<Address> address = new ArrayList<>();
-	
 	@OneToMany(mappedBy="id.customer")
 	private List<Score> scores = new ArrayList<>();
 	
@@ -68,14 +65,6 @@ public class Customer implements Serializable{
 		this.email = email;
 	}
 
-	public List<Address> getAddress() {
-		return address;
-	}
-
-	public void setAddress(List<Address> address) {
-		this.address = address;
-	}
-
 	public List<Score> getScores() {
 		return scores;
 	}
@@ -103,7 +92,7 @@ public class Customer implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Customer [id=" + id + ", name=" + name + ", email=" + email + ", address=" + address + "]";
+		return "Customer [id=" + id + ", name=" + name + ", email=" + email + ", address=" +"]";
 	}
 	
 	

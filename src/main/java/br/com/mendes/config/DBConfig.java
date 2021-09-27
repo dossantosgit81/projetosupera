@@ -22,7 +22,6 @@ public class DBConfig {
 	
 	@Value("${spring.datasource.driverClassName}")
 	private String driveClassName;
-	
 
 	@Bean
 	public JdbcTemplate jdbcTemplate(DataSource dataSource) {
