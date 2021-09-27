@@ -1,26 +1,25 @@
 package br.com.mendes;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
 
-import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.com.mendes.domain.models.Address;
+import br.com.mendes.domain.models.CartItem;
 import br.com.mendes.domain.models.Category;
 import br.com.mendes.domain.models.Customer;
 import br.com.mendes.domain.models.Product;
 import br.com.mendes.domain.models.Score;
-import br.com.mendes.domain.models.ShoppingCart;
 import br.com.mendes.services.AddressService;
+import br.com.mendes.services.CartItemService;
 import br.com.mendes.services.CategoryService;
 import br.com.mendes.services.CustomerService;
 import br.com.mendes.services.ProductService;
 import br.com.mendes.services.ScoreService;
-import br.com.mendes.services.ShoppingCartService;
+
 
 @SpringBootApplication
 public class ProjetosuperaApplication implements CommandLineRunner{
@@ -41,7 +40,8 @@ public class ProjetosuperaApplication implements CommandLineRunner{
 	private ScoreService scocreService;
 	
 	@Autowired
-	private ShoppingCartService spService;
+	private CartItemService cis;
+	
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetosuperaApplication.class, args);
@@ -52,6 +52,7 @@ public class ProjetosuperaApplication implements CommandLineRunner{
 
 		Customer customer1 = customerService.save(new Customer(null, "Rafael Mendes dos Santos", "dossantosgit@gmail.com"));
 		Customer customer2 = customerService.save(new Customer(null, "João da Silva", "João@hotmail.com"));
+		Customer customer3 = customerService.save(new Customer(null, "João da Silva", "João@hotmail.com"));
 		
 		Address address1 = new Address(null, "Brasil", "BA", "Barreiras", "Morada da Lua", "Rua da feira", "44a", customer1);
 		Address address2 = new Address(null, "Brasil", "BA", "Barreiras", "Sandra Regina", "Rua da feira", "36b", customer1);
@@ -79,23 +80,31 @@ public class ProjetosuperaApplication implements CommandLineRunner{
 		scocreService.save(score3);
 		scocreService.save(score4);
 		
-		//Customer id, Customer customer
-		ShoppingCart sp = new ShoppingCart(customer1, customer1);
-		sp.getItens().addAll(Arrays.asList(prod1, prod2));
+		//Customer customer, Integer qtd, Product product
 		
-		//System.out.println(sp.getItens().size());
-		System.out.println(sp.getSubtotal().toString());
-		System.out.println(sp.getFreight().toString());
-		System.out.println();
+		CartItem cartItem1 = new CartItem(null, customer1, prod1, 5);
+		CartItem cartItem2 = new CartItem(null, customer2, prod2, 5);
+		CartItem cartItem3 = new CartItem(null, customer3, prod2, 5);
+		//CartItem cartItem3 = new CartItem(customer, prod1, 2);
 		
-		ShoppingCart spCartSaved = spService.save(sp);
-		ShoppingCart spCartSaved1 = spService.save(sp);
+		cis.save(cartItem1);
+		cis.save(cartItem2);
+		cis.save(cartItem3);
 		
+		System.out.println(cis.updateOrSaveProductCustomerOnCartItem(customer1, prod1, 10));
+		System.out.println(cis.updateOrSaveProductCustomerOnCartItem(customer2, prod2, 10));
+		System.out.println(cis.updateOrSaveProductCustomerOnCartItem(customer3, prod2, 10));
+		
+		System.out.println(cis.updateOrSaveProductCustomerOnCartItem(customer1, prod2, 10));
+		System.out.println(cis.updateOrSaveProductCustomerOnCartItem(customer2, prod1, 10));
+		System.out.println(cis.updateOrSaveProductCustomerOnCartItem(customer3, prod1, 10));
+		
+		cis.delete(customer3, prod1);
 		
 		System.out.println("Fim!!!!!");
 		
 		
-		//relação entre Prod1 e Customer
+		//Já existe um produto cadastrado com esse id e cliente
 		
 	}
 

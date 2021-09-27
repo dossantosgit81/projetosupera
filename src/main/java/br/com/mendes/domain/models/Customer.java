@@ -31,12 +31,9 @@ public class Customer implements Serializable{
 	@OneToMany(mappedBy="id.customer")
 	private List<Score> scores = new ArrayList<>();
 	
-	@OneToMany(mappedBy="customer")
-	private List<Checkout> checkouts = new ArrayList<>();
-	
 	@OneToOne(mappedBy="customer")
-	private ShoppingCart shopingCart;
-	
+	private CartItem cartItem;
+
 	public Customer() {
 		
 	}
@@ -86,11 +83,6 @@ public class Customer implements Serializable{
 	public void setScores(List<Score> scores) {
 		this.scores = scores;
 	}
-
-	public List<Checkout> getCheckouts() {
-		return checkouts;
-	}
-
 
 	@Override
 	public int hashCode() {

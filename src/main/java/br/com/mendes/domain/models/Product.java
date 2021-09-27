@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Product {
@@ -29,6 +30,9 @@ public class Product {
 	
 	@OneToMany(mappedBy="id.product")
 	private List<Score> score = new ArrayList<>();
+	
+	@OneToOne(mappedBy="product")
+	private CartItem cart;
 	
 	public Product() {
 		
@@ -79,8 +83,7 @@ public class Product {
 
 	public void setScore(List<Score> score) {
 		this.score = score;
-	}
-
+	}	
 	
 
 }
