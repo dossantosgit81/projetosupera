@@ -13,7 +13,7 @@ import br.com.mendes.domain.models.CartItem;
 import br.com.mendes.domain.models.Customer;
 import br.com.mendes.domain.models.Product;
 import br.com.mendes.domain.repositories.CartItemRepository;
-import br.com.mendes.domain.repositories.jdbcutils.CartItemProductRepositoryUtil;
+import br.com.mendes.domain.repositories.jdbcutils.JDBCUtilRepository;
 import br.com.mendes.services.CartItemService;
 
 @Service
@@ -23,7 +23,7 @@ public class CartServiceImpl implements CartItemService{
 	private CartItemRepository cartRepository;
 
 	@Autowired
-	private CartItemProductRepositoryUtil repoCarItemProd;
+	private JDBCUtilRepository jdbcUtilRepository;
 
 	@Override
 	public CartItem save(CartItem item) {
@@ -70,7 +70,7 @@ public class CartServiceImpl implements CartItemService{
 	}
 	
 	private List<CartItemProductDTO> resultListCartItem(Customer customer, Product product) {
-		return repoCarItemProd.searchCartItemProductDTO(customer.getId(), product.getId());
+		return jdbcUtilRepository.searchCartItemProductDTO(customer.getId(), product.getId());
 	}
 
 
