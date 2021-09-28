@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="cart_item")
 public class CartItem {
@@ -27,10 +29,12 @@ public class CartItem {
 	private BigDecimal total;
 	
 	@OneToOne
+	@JsonIgnore
 	private Product product;
 	
 	@OneToOne
 	@JoinColumn(name="customer_id")
+	@JsonIgnore
 	private Customer customer;
 	
 	public CartItem() {

@@ -17,13 +17,14 @@ import br.com.mendes.domain.repositories.jdbcutils.JDBCUtilRepository;
 import br.com.mendes.services.CartItemService;
 
 @Service
-public class CartServiceImpl implements CartItemService{
+public class CartItemServiceImpl implements CartItemService{
 	
 	@Autowired
 	private CartItemRepository cartRepository;
 
 	@Autowired
 	private JDBCUtilRepository jdbcUtilRepository;
+
 
 	@Override
 	public CartItem save(CartItem item) {
@@ -69,6 +70,9 @@ public class CartServiceImpl implements CartItemService{
 		
 	}
 	
+	
+	
+
 	private List<CartItemProductDTO> resultListCartItem(Customer customer, Product product) {
 		return jdbcUtilRepository.searchCartItemProductDTO(customer.getId(), product.getId());
 	}
