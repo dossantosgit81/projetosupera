@@ -9,17 +9,19 @@ Eu disponibilizei todos os dados necessarios no resources/import.sql
 
 ### Versão do java -> 11
 
-### Gerar build -> na pasta raiz do projeto execute: mvn clean package
+#### Gerar build
+ <p>na pasta raiz do projeto execute: mvn clean package</p>
 
-### Executar aplicação -> na pasta target execute o seguinte comando: java -jar projetosupera-0.0.1-SNAPSHOT.jar
+#### Executar aplicação  
+<p>Na pasta target execute o seguinte comando: java -jar projetosupera-0.0.1-SNAPSHOT.jar</p>
 
-## Os valores exibidos no checkout (frete, subtotal e total) devem ser calculados 
-
-### Implementado parcialmente em: HTTP.post/cart
+#### Os valores exibidos no checkout (frete, subtotal e total) devem ser calculados 
+<p>Implementado parcialmente em: HTTP.post/cart</p>
 
 ## O usuário poderá adicionar e remover produtos do carrinho
 
-### HTTP.post/cart -> aqui eu adiciono um produto ou atualizo a quantidade
+#### HTTP.post/cart 
+<p>aqui eu adiciono um produto ou atualizo a quantidade. Se já existe um usuario com as informações do body, eu atualiza a quantidade e as informações do carrinho</p>
     {
     "customer":{
         "id":1
@@ -29,7 +31,8 @@ Eu disponibilizei todos os dados necessarios no resources/import.sql
     }
 }
 
-### HTTP.put/cart -> aqui eu deleto um produto do carrinho
+#### HTTP.put/cart
+<p> aqui eu deleto um produto do carrinho</p>
     {
     "customer":{
         "id":1
@@ -39,17 +42,20 @@ Eu disponibilizei todos os dados necessarios no resources/import.sql
     }
 }
 
-## O usuário poderá ordenar os produtos por preço, popularidade (score) e ordem alfabética.
+### O usuário poderá ordenar os produtos por preço, popularidade (score) e ordem alfabética.
 
-### HTTP.get/products/order-price <- Ordena por preço
+#### HTTP.get/products/order-price  
+<p>Ordena por preço</p>
 
-### HTTP.get/products/order-score <- Ordena por score
+#### HTTP.get/products/order-score  
+<p>Ordena por score</p>
 
-### HTTP.get/products/order-description <- Ordena por ordem alfabetica
+#### HTTP.get/products/order-description <- 
+<p>Ordena por ordem alfabetica</p>
 
 ## A cada produto adicionado, deve-se somar R$ 10,00 ao frete.
-
-### HTTP.post/cart -> aqui eu adiciono um produto ou atualizo a quantidade, freight, subtotal, total
+#### HTTP.post/cart -> 
+<p>Aqui ele fará essa logica de frete quando eu adiciono o produto no carrinho</p>
     {
     "customer":{
         "id":1
@@ -61,7 +67,8 @@ Eu disponibilizei todos os dados necessarios no resources/import.sql
 
 ## Quando o valor dos produtos adicionados ao carrinho for igual ou superior a R$ 250,00, o frete é grátis.
 
-### HTTP.post/cart -> aqui eu adiciono um produto ou atualizo a quantidade, freight, subtotal, total dinamicamente
+#### HTTP.post/cart 
+<p>Quando eu salvo um produto no carrinho, ele já faz esse calculo pra mim e injeta as informações na base de dados</p>
     {
     "customer":{
         "id":1
