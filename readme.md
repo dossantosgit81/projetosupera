@@ -2,7 +2,16 @@
 
 <p>Esse projeto foi dedicado ao processo seletivo. Bom, foi um desafio e tanto pra mim. Eu achei que eu ia terminar antes ,pois já havia feito um projeto parecido no front end. Porém acabei tomando alguns caminhos errados, que me custaram muito tempo. Aprendi muito. A lição mais importante, seria: modelar bem as classes, e usar TDD.
 Eu deixei os testes para o final e acabei não conseguindo entregar os teste. Além do 
-calculo do frete, subtotal, e total que só consegui implementar parcialmente quando cadastro um carrinho. Então é isso. Abaixo os recursos</p>
+calculo do frete, subtotal, e total que só consegui implementar parcialmente quando cadastro um carrinho. Então é isso. Abaixo os recursos.
+Utilizei banco de dados H2. username:sa, password:password <- credenciais de acesso ao banco de testedb.
+Eu disponibilizei todos os dados necessarios no resources/import.sql
+</p>
+
+### Versão do java -> 11
+
+### Gerar build -> na pasta raiz do projeto execute: mvn clean package
+
+### Executar aplicação -> na pasta target execute o seguinte comando: java -jar projetosupera-0.0.1-SNAPSHOT.jar
 
 ## Os valores exibidos no checkout (frete, subtotal e total) devem ser calculados 
 
